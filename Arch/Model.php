@@ -80,15 +80,24 @@ abstract class Model {
      * Exporte l'objet dans la base de données
      * 
      * 
-     * @return Object    object(App\Models\Client)#0
+     * @return Object       object(App\Models\Client)#0
+     * 
+     * @throws \Exception   Si la variable table n'est pas déclaré dans le Model
      */
     public function create() {
         global $db;
         $chain = implode(',',$this->fillable);
+
+
+        if (static::$table === null) {
+            throw new \Exception('Missing table declaration in Model');
+        }
+
         $db->getPDO()->query('
         INSERT INTO '.static::$table.'('.$chain.')
         VALUES('.$this->getValuesForSQL($this->fillable, 0).')
         ');
+
 
         $this->setId($db->getPDO()->lastInsertId());
 
@@ -161,13 +170,21 @@ abstract class Model {
      * 
      * @param Array         $array      $this->fillable
      * @param Boolean       $type       True
+     * 
+     * @throws \Exception   Si le type est invalide
      */
     private function getValuesForSQL(Array $array, $type) {
         $values = [];
         $updateValues = [];
         if (!$type) {
             foreach ($array as $item) {
-                $values[] = '"'.$this->$item.'"';
+                switch (gettype($this->$item)) {
+                    case 'string':      $values[] = '"'.$this->$item.'"';                           break;
+                    case 'integer':     $values[] = ''.$this->$item.'';                             break;
+                    case 'double':       $values[] = ''.$this->$item.'';                             break;
+                    case 'object':      $values[] = '"'.$this->$item->format('Y-m-d H:i:s').'"';    break;
+                    default: throw new \Exception('Internal Error (type caught: '.gettype($this->$item).' is column: '.$item);
+                }
             }
             return implode(',', $values);
         } 

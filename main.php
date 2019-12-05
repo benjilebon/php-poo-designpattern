@@ -1,22 +1,30 @@
 <?php
 
-use App\Models\Collaborateur;
-use Arch\Model;
+use App\Models\Admin;
 
-
-$db->createTable('collaborateurs',[
-    'name' => 'string',
-    'firstname' => 'string'
+$db->createTable('admin', 
+    [
+    'name'              => 'string', 
+    'firstname'         => 'string', 
+    'birthDate'         => 'datetime', 
+    'address'           => 'string', 
+    'maritalStatus'     => 'string', 
+    'salary'            => 'float', 
+    'yearsInCompany'    => 'int',
+    'fonction'          => 'string'
 ]);
 
-$collab1 = new Collaborateur([
-    'name' => 'loll',
-    'firstname' => 'mabite'
+$test = new Admin([
+    'name'          => 'Doe',
+    'firstname'     => 'John',
+    'birthDate'     => new DateTime('2000-00-00'),
+    'address'       => '18 rue du test',
+    'maritalStatus' => 'Célibataire',
+    'salary'        => 2800.00,
+    'yearsInCompany'=> 0,
+    'fonction'      => 'Secrétaire'
 ]);
-$collab1->create();
-
-
-var_dump($collab1);
+$test->create();
 
 
 ?>

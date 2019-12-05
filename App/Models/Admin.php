@@ -1,15 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
+
+use App\Models\Collaborateur;
 
 class Admin extends Collaborateur {
     /** @var String $fonction */
-    private $fonction;
+    protected $fonction;
 
-    protected $fillable =['fonction'];
+    protected $fillable = ['name', 'firstname', 'birthDate', 'address', 'maritalStatus', 'salary', 'yearsInCompany', 'fonction'];
 
-    public function __construct($fonction){
-        $this->fonction = $fonction;
+    static protected $table = 'admin';
+
+    public function __construct($attributes){
+        parent::__construct($attributes);
     }
 
     public function setFonction($fonction){

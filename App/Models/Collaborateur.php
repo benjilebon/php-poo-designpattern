@@ -15,10 +15,6 @@ class Collaborateur extends Model implements Employe {
     protected $salary;
     protected $yearsInCompany;
 
-    protected $fillable = ['name', 'firstname'];
-
-    static protected $table = 'collaborateurs';
-
     function __construct(Array $attributes) {
         parent::__construct($attributes);
     }

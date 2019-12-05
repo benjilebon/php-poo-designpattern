@@ -1,6 +1,6 @@
 <?php 
 
-namespace DB;
+namespace Database;
 
 class Database {
     private $bdo;
@@ -14,8 +14,9 @@ class Database {
             $this->bdo = new \PDO('mysql:host=localhost;dbname=phppoo','root','root');
             $this->bdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
-        catch (Exception $e) {
-            echo 'Une exception a été lancée. Message d\'erreur: ', $e->getMessage();
+        catch (\PDOException $e) {
+            echo "\nLa connexion a la base de données n'a pas pu être établi \n";
+            throw new \Exception;
         }
     }
 
@@ -61,7 +62,6 @@ class Database {
             return true;
         } 
         catch (\Exception $e) {
-            echo $e;
             return false;
         }
     }

@@ -1,5 +1,10 @@
 <?php
 
+spl_autoload_register(function ($class_name) {
+    $p = str_replace('\\', '/', $class_name);
+    include $p . '.php';
+});
+
 require './Console/Handle.php';
 
 $console = new Console();

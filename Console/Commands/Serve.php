@@ -17,7 +17,8 @@ class Serve extends Command {
      */
     public function handle() {
         $colors = new Colors();
-        Console::write($colors->getColoredString('Un serveur PHP a été démarré !', "blue"));
+        Console::write($colors->getColoredString('Un serveur PHP a été démarré ! >>>>>>>>>>>>>> ', "blue"));
+        Console::write($colors->getColoredString('http://localhost:8000', 'yellow'));
         Console::write("\n");
         shell_exec('php -S localhost:8000');
     }

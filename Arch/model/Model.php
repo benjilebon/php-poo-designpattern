@@ -6,8 +6,14 @@ namespace Arch\model;
 
 class Model {
 
-    private function getId() {
-        
+    protected $id;
+
+    public function getId() {
+        return $this->id;
+    }
+
+    private function setId($id) {
+        return $this->id = $id;
     }
 
     static public function getById($table, $id) {
@@ -17,12 +23,10 @@ class Model {
         SELECT * from `'.$table.'` WHERE id = '.$id.'
         ')->fetch();
 
-        var_dump($query);
 
         $object = instantiate([
             getFillablesWithValues($fillable)
         ]);
-        var_dump($object);
         return $object;
     }
 
@@ -42,16 +46,12 @@ class Model {
     public function create() {
         global $db;
         $chain = implode(',',$this->fillable);
-        echo '
-        INSERT INTO '.$this->table.'('.$chain.')
-        VALUES('.$this->getValuesForSQL($this->fillable, 0).')
-        ';
         $res = $db->getPDO()->query('
         INSERT INTO '.$this->table.'('.$chain.')
         VALUES('.$this->getValuesForSQL($this->fillable, 0).')
         ');
-        var_dump($res);
-        
+        $this->setId($db->getPDO()->lastInsertId());
+
         return $this;
     }
 

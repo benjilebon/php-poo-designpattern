@@ -7,7 +7,6 @@ use Arch\interfaces\Employe;
 use Arch\model\Model;
 
 class Collaborateur extends Model implements Employe {
-    protected $id;
     protected $name;
     protected $firstname;
     protected $birthDate;

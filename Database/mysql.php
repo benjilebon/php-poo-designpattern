@@ -62,8 +62,6 @@ class Table {
         $this->name = $name;
 
         $lol = $bdo->query('CREATE TABLE '.$name.' (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT);');
-
-        var_dump($lol);
     }
 
     public function delIdentifiers() {

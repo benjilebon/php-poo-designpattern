@@ -30,6 +30,7 @@ abstract class Model {
     /**
      * Sauvegarde un Objet existant dans la base de données
      * 
+     * Équivalent de l'update en CRUD
      * 
      * @return Object       object(App\Models\Client)#0
      * @throws \Exception   Si l'objet n'existe pas dans la base de données
@@ -49,8 +50,13 @@ abstract class Model {
     /**
      * Récupère un Objet dans la base de données et retourne une instance de l'objet récupéré
      * 
+     * Équivalent de read en CRUD
+     * 
      * @param int       $id     4
      * @return Object   object(App\Models\Client)#0
+     * @return Boolean  false si l'objet n'existe pas
+     * 
+     * 
      */
     static public function getById($id) {
         global $db;
@@ -60,6 +66,7 @@ abstract class Model {
         ')->fetch(\PDO::FETCH_ASSOC);
 
         if (!$query) {
+            trigger_error('Object does not exist in Database', E_USER_WARNING);
             return false;
         }
 
@@ -86,6 +93,26 @@ abstract class Model {
         $this->setId($db->getPDO()->lastInsertId());
 
         return $this;
+    }
+
+    /**
+     * Exporte l'objet dans la base de données
+     * 
+     * 
+     * @return Boolean      True si la requête c'est bien executé
+     * @throws \Exception   Si l'objet n'existe pas
+     */
+    public function delete() {
+        global $db;
+        try {
+            $req = $db->getPDO()->prepare("DELETE FROM ".static::$table." where id=".$this->id);
+            $req->execute();
+        }
+        catch (\Exception $e) {
+            throw new \Exception("Can't delete :".$e);
+        }
+
+        return true;
     }
 
     /**

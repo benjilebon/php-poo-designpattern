@@ -34,12 +34,12 @@ abstract class Model {
 
 
         $object = self::instantiate($query);
-        var_dump($object);
+
         return $object;
     }
 
     static private function instantiate($attributes = []) {
-        var_dump($attributes);
+
         $model = new static((array) $attributes);
 
         return $model;
@@ -56,7 +56,7 @@ abstract class Model {
         global $db;
         $chain = implode(',',$this->fillable);
         $db->getPDO()->query('
-        INSERT INTO '.$this->table.'('.$chain.')
+        INSERT INTO '.static::$table.'('.$chain.')
         VALUES('.$this->getValuesForSQL($this->fillable, 0).')
         ');
 

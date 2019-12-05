@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Collaborateur;
-use Arch\model\Model;
+use Arch\Model;
 
 
 $db->createTable('collaborateurs',[
@@ -9,8 +9,18 @@ $db->createTable('collaborateurs',[
     'firstname' => 'string'
 ]);
 
-$collaborateur1 = new Collaborateur('test', 'lol', '2000-00-00');
-$collaborateur1->create();
+$collab1 = Collaborateur::getById(20);
+
+$b = new Collaborateur([
+    'name' => 'bite',
+    'firstname' => 'tadaronne'
+]);
+
+$b->create();
+
+echo '<pre>';
+var_dump($collab1);
+echo '</pre>';
 
 
 

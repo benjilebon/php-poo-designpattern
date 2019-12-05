@@ -52,6 +52,7 @@ class Model {
         ');
         var_dump($res);
         
+        return $this;
     }
 
     public function save() {

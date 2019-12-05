@@ -1,5 +1,7 @@
 <?php
 
+namespace Console;
+
 abstract class Command {
     public function showName() {
         return $this->name;

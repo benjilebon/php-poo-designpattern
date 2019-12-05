@@ -5,11 +5,11 @@ namespace Console\Commands;
 use Console\Command;
 use Console\Console;
 
-class Hello extends Command {
+class Bonjour extends Command {
 
-    protected $name = 'hello';
+    protected $name = 'bonjour';
 
-    protected $description = "Hello World !";
+    protected $description = "Salut !";
 
     public function handle() {
         Console::write('Hello world !');

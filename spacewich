@@ -1,0 +1,12 @@
+<?php
+
+require './Console/Handle.php';
+
+$console = new Console();
+
+
+$console->boot();
+
+echo "\n";
+
+?>

@@ -1,13 +1,26 @@
 <?php
 require './Database/mysql.php';
 
+/**
+ * Ce code permet d'initier l'autoload permettant à PHP d'automatiquement importer les class sans préciser leur emplacement précis
+ * 
+ * Toute importation par de /
+ * 
+ * ex: use App\Models\Admin
+ * 
+ */
 spl_autoload_register(function ($class_name) {
     $p = str_replace('\\', '/', $class_name);
     include $p . '.php';
 });
 
 
-
+/**
+ * Chargement du fichier principal ou on utilise tout notre code
+ * 
+ * C'est ici qu'on crée les tables, instancie les models etc.
+ * 
+ */
 require_once 'main.php';
 
 

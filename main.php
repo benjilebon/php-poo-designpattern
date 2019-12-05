@@ -9,21 +9,14 @@ $db->createTable('collaborateurs',[
     'firstname' => 'string'
 ]);
 
-$collab1 = Collaborateur::getById(20);
-
-$b = new Collaborateur([
-    'name' => 'bite',
-    'firstname' => 'tadaronne'
+$collab1 = new Collaborateur([
+    'name' => 'loll',
+    'firstname' => 'mabite'
 ]);
+$collab1->create();
 
-$b->create();
 
-echo '<pre>';
 var_dump($collab1);
-echo '</pre>';
 
-
-
-// $t = Model::getById('collaborateurs', 2);
 
 ?>

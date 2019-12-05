@@ -5,6 +5,10 @@ namespace DB;
 class Database {
     private $bdo;
 
+    /**
+     * Connecte à la base de données
+     *
+     */
     function __construct() {
         try {
             $this->bdo = new \PDO('mysql:host=localhost;dbname=phppoo','root','root');
@@ -15,10 +19,23 @@ class Database {
         }
     }
 
+    /**
+     * Récupère le PDO
+     * 
+     * 
+     * @return \PDO   object(\PDO)#0
+     */
     public function getPDO() {
         return $this->bdo;
     }
 
+    /**
+     * Permet de créer une table dans la base de données
+     * 
+     * @param String    $name       Nom de la base de données
+     * @param Array     $columns    Colonnes de la table (['nom' => 'type'])
+     * @param Boolean   $id         Avec des ID ?
+     */
     public function createTable($name, Array $columns, $id = true) {
 
         if (!$this->tableExists($name)) {
@@ -31,6 +48,12 @@ class Database {
 
     }
 
+    /**
+     * Teste si la table données existe déjà ou non dans la base de données
+     * 
+     * @param String    $name       Nom de la table
+     * @return Boolean  true/false  true si la table existe, false si elle n'existe pas
+     */
     private function tableExists($name) {
         $q = $this->bdo->prepare( "DESCRIBE `".$name."`");
         try {
@@ -41,10 +64,6 @@ class Database {
             echo $e;
             return false;
         }
-    }
-
-    static function select() {
-
     }
 
 }

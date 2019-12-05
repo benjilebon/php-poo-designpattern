@@ -1,5 +1,5 @@
 <?php
-namespace Arch\interfaces;
+namespace Arch;
 
 interface Employe {
 

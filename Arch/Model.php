@@ -1,12 +1,17 @@
 <?php
 
-namespace Arch\model;
+namespace Arch;
 
-// require 'Database/mysql.php';
-
-class Model {
+abstract class Model {
 
     protected $id;
+    static protected $table;
+
+    protected function __construct(Array $attributes) {
+        foreach ($attributes as $attr => $value) {
+            $this->$attr = $value;
+        }
+    }
 
     public function getId() {
         return $this->id;
@@ -16,21 +21,25 @@ class Model {
         return $this->id = $id;
     }
 
-    static public function getById($table, $id) {
+    static public function getById($id) {
         global $db;
 
         $query = $db->getPDO()->query('
-        SELECT * from `'.$table.'` WHERE id = '.$id.'
-        ')->fetch();
+        SELECT * from `'.static::$table.'` WHERE id = '.$id.'
+        ')->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$query) {
+            return false;
+        }
 
 
-        $object = instantiate([
-            getFillablesWithValues($fillable)
-        ]);
+        $object = self::instantiate($query);
+        var_dump($object);
         return $object;
     }
 
-    private function instantiate($attributes = []) {
+    static private function instantiate($attributes = []) {
+        var_dump($attributes);
         $model = new static((array) $attributes);
 
         return $model;
@@ -46,10 +55,11 @@ class Model {
     public function create() {
         global $db;
         $chain = implode(',',$this->fillable);
-        $res = $db->getPDO()->query('
+        $db->getPDO()->query('
         INSERT INTO '.$this->table.'('.$chain.')
         VALUES('.$this->getValuesForSQL($this->fillable, 0).')
         ');
+
         $this->setId($db->getPDO()->lastInsertId());
 
         return $this;

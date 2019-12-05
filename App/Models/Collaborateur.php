@@ -3,8 +3,8 @@
 namespace App\Models;
 // require '../../arch/interface/Employe.php';
 // require '../../arch/interface/Employe.php';
-use Arch\interfaces\Employe;
-use Arch\model\Model;
+use Arch\Employe;
+use Arch\Model;
 
 class Collaborateur extends Model implements Employe {
     protected $name;
@@ -17,12 +17,10 @@ class Collaborateur extends Model implements Employe {
 
     protected $fillable = ['name', 'firstname'];
 
-    protected $table = 'collaborateurs';
+    static protected $table = 'collaborateurs';
 
-    function __construct($name,$firstname,$birthDate) {
-        $this->name = $name;
-        $this->firstname = $firstname;
-        $this->birthDate = $birthDate;
+    function __construct(Array $attributes) {
+        parent::__construct($attributes);
     }
 
     public function setName($name) {

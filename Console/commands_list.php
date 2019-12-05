@@ -6,8 +6,8 @@
 
 return [
     'commands' => [
-        Console\Commands\Hello::class,
-        Console\Commands\Bonjour::class
+        Console\Commands\Populate::class,
+        Console\Commands\Serve::class,
     ]
 ]
 

@@ -1,17 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
+use App\Models\Collaborateur;
 
 class RespoTech extends Collaborateur {
         /** @var String $departement */
-        private $departement;
+        protected $departement;
 
-        protected $fillable = ['departement'];
+        protected $fillable = ['name','firstname','departement'];
 
-        public function __construct($departement) {
-            $this->departement = $departement;
+        static protected $table = 'respo_tech';
+
+        public function __construct($attributes){
+            parent::__construct($attributes);
         }
-    
+
         public function setDepartement($departement) {
             $this->departement = $departement;
             $this->save();

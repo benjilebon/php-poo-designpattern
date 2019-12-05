@@ -1,11 +1,18 @@
 <?php 
-namespace App;
+namespace App\Models;
+use Arch\Model;
 
 class Departement extends Model{
     /** @var String $expertise */
-    private $expertise;
+    protected $expertise;
 
     protected $fillable=['expertise'];
+    
+    static protected $table = 'departement';
+
+    public function __construct($attributes){
+        parent::__construct($attributes);
+    }
 
     public function setExpertise($expertise)
     {

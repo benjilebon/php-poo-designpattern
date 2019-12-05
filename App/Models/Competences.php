@@ -1,17 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
+use App\Models\Collaborateur;
 
-class Competences extends Model {
+class Competences extends ExpertTech {
         /** @var String $competences */
-        private $competences;
+        protected $competences;
         /** @var Int $experience */
-        private $experience;
+        protected $experience;
 
-        protected $fillable = ['competences','experience'];
+        protected $fillable = ['name', 'firstname','experience','competences','departement'];
 
-        public function __construct($departement) {
-            $this->departement = $departement;
+        static protected $table = 'competences';
+
+        public function __construct($attributes){
+            parent::__construct($attributes);
         }
     
         public function setDepartement($departement) {

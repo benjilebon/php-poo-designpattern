@@ -1,23 +1,24 @@
 <?php
 
-namespace App;
+namespace App\Models;
+use Arch\Model;
 
 class Devis extends Model {
-    /** @var String $nombreDevis */
-    public $nombreDevis;
+
 
     /** @var Datetime $dateDevis */
-    public $dateDevis;
+    protected $dateDevis;
 
      /** @var Int $montant */
-    public $montant;
+    protected $montant;
 
-    protected $fillable = ['nombreDevis','dateDevis','montant'];
+    protected $fillable = ['dateDevis','montant'];
 
-   public function setNombreDevis($nombreDevis){
-       $this->nombreDevis = $nombreDevis;
-       $this->save();
-   }
+    static protected $table = 'devis';
+
+    public function __construct($attributes){
+        parent::__construct($attributes);
+    }
 
    public function setDateDevis($dateDevis){
         $this->dateDevis = $dateDevis;
@@ -27,10 +28,6 @@ class Devis extends Model {
    public function setMontant($montant){
         $this->montant = $montant;
         $this->save();
-   }
-
-   public function getNombreDevis(){
-       return $this->nombreDevis;
    }
 
    public function getDateDevis(){

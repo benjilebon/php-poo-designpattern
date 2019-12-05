@@ -1,22 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
+use App\Models\Collaborateur;
 
 class ExpertTech extends Collaborateur {
     /** @var String $departement */
-    private $departement;
+    protected $departement;
 
-    /** @var Array $competences */
-    private $competences;
+    /** @var String $competences */
+    protected $competences;
 
-     /** @var Boolean $disponible */
-    private $disponible;
+     /** @var String $disponible */
+    protected $disponible;
 
 
-    protected $fillable = ['departement', 'competences', 'disponible'];
+    protected $fillable = ['name', 'firstname', 'birthDate', 'address', 'maritalStatus', 'salary', 'yearsInCompany','departement', 'competences', 'disponible'];
 
-    public function __construct($departement) {
-        $this->departement = $departement;
+
+    static protected $table = 'expert_tech';
+
+    public function __construct($attributes){
+        parent::__construct($attributes);
     }
 
     public function setDepartement($p) {

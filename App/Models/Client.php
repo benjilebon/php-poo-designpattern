@@ -1,18 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Collaborateur;
+use Arch\Model;
 
-class Client extends Collaborateur {
+class Client extends Model {
     /** @var String $nomSociete */
-    private $nomSociete;
+    protected $nomSociete;
     /** @var String $nomContact */
-    private $nomContact;
+    protected $nomContact;
     /** @var Int $numeroContact */
-    private $numeroContact;
+    protected $numeroContact;
     
     protected $fillable = ['nomSociete','nomContact','numeroContact'];
+
+    static protected $table = 'clients';
+
+    public function __construct($attributes){
+        parent::__construct($attributes);
+    }
 
     public function setNomSociete($nomSociete)
     {

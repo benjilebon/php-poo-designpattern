@@ -2,12 +2,17 @@
 
 namespace Console;
 
+/**
+ * 
+ * Cette classe permet d'utiliser les couleurs dans la console
+ * 
+ */
 class Colors {
     private $foreground_colors = array();
     private $background_colors = array();
 
     public function __construct() {
-        // Set up shell colors
+
         $this->foreground_colors['black'] = '0;30';
         $this->foreground_colors['dark_gray'] = '1;30';
         $this->foreground_colors['blue'] = '0;34';

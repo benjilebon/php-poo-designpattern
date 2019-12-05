@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * 
+ * Ce CLI est utilisé via la syntaxe suivante : php spacewich
+ * 
+ * Il permet pour le moment de pouvoir créer les tables sans avoir a passer par le main.php
+ * 
+ */
+
+
+
 spl_autoload_register(function ($class_name) {
     $p = str_replace('\\', '/', $class_name);
     include_once $p . '.php';

@@ -11,6 +11,9 @@ class Hello extends Command {
 
     protected $description = "Hello World !";
 
+    /**
+     * Le code a exécuter est à mettre dans cette méthode
+     */
     public function handle() {
         Console::write('Hello world !');
     }

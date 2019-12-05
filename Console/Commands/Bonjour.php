@@ -11,6 +11,9 @@ class Bonjour extends Command {
 
     protected $description = "Salut !";
 
+    /**
+     * Le code a exécuter est à mettre dans cette méthode
+     */
     public function handle() {
         Console::write('Hello world !');
     }

@@ -76,6 +76,13 @@ class Table {
     private $bdo;
     public $name;
 
+    /**
+     * 
+     * Créé la table
+     * 
+     * @param String $name      Nom de la table à créer
+     * @param PDO    $bdo       Instance du PDO
+     */
     public function __construct($name, $bdo) {
         $this->bdo = $bdo;
         $this->name = $name;
@@ -83,10 +90,27 @@ class Table {
         $lol = $bdo->query('CREATE TABLE '.$name.' (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT);');
     }
 
+    /**
+     * 
+     * Supprime les ID d'une table
+     * 
+     */
     public function delIdentifiers() {
         $this->bdo->query('ALTER TABLE '.$this->name.'DROP "id"');
     }
 
+    /**
+     * 
+     * Ajoute une colonne à la table
+     * 
+     * @param String    $columnName     Nom de la colonne
+     * @param String    $type           Type de la colonne
+     * @param Boolean   $nullable       La colonne peut-elle être null ?
+     * 
+     * @throws \Exception               Si le type fourni est invalide
+     * 
+     * @return Table   
+     */
     public function addColumn(String $columnName, String $type, $nullable = true) {
         switch ($type) {
             case 'string':              $formattedType = 'VARCHAR (255)'; break;

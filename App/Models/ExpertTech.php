@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Collaborateur;
 
 class ExpertTech extends Collaborateur {
@@ -21,6 +22,7 @@ class ExpertTech extends Collaborateur {
 
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->competences = json_decode($this->competences);
     }
 
     public function setDepartement($p) {
@@ -40,11 +42,15 @@ class ExpertTech extends Collaborateur {
 
     
     public function getDepartement() {
-        return $this->departement;
+        return Departement::whereEqual('name', $this->departement);
     }
 
     public function getCompetences() {
-        return $this->competences;
+        $data = [];
+        foreach ($this->competences as $competence) {
+            $data[] = Competence::whereEqual('name', $competence);
+        }
+        return $data;
     }
 
     public function getDisponible() {

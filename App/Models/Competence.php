@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Models;
-use App\Models\Collaborateur;
+use Arch\Model;
 
-class Competences extends Model {
+class Competence extends Model {
         /** @var String $competences */
-        protected $competences;
+        protected $name;
         /** @var Int $experience */
-        protected $experience;
+        protected $competence;
 
-        protected $fillable = ['name', 'firstname','experience','competences','departement'];
+        protected $fillable = ['name','competence'];
 
         static protected $table = 'competences';
 

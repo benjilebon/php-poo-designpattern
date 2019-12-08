@@ -40,6 +40,7 @@ $db->createTable('devis',
 
 $db->createTable('departement', 
     [
+    'name'               => 'string',
     'expertise'          => 'string'
 ]);
 
@@ -60,17 +61,14 @@ $db->createTable('expert_tech',
     'salary'            => 'float', 
     'yearsInCompany'    => 'int',
     'departement'          => 'string',
-    'competences'=>'string',
+    'competences'=>'json',
     'disponible'=>'string'
 ]);
 
 $db->createTable('competences', 
     [
     'name'          => 'string',
-    'firstname'          => 'string',
-    'experience'=>'int',
-    'competences' => 'string',
-    'departement'=>'string'
+    'competence' => 'string',
 ]);
 
 $db->createTable('factures', 

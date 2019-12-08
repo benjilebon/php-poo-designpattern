@@ -4,6 +4,8 @@ use Arch\Model;
 
 class Departement extends Model{
     /** @var String $expertise */
+    protected $name;
+    /** @var String $expertise */
     protected $expertise;
 
     protected $fillable=['expertise'];

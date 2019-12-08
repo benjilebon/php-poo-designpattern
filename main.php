@@ -1,94 +1,48 @@
 <?php
 
+/**
+ * C'est dans ce fichier que toute l'utilisation de l'application va se dérouler
+ * 
+ * Pour commencer, essayons de créer un expert technique :
+ */
+
+ use App\Models\ExpertTech; //Grâce à l'autoload, on peut utiliser le use pour charger notre model
+ use App\Models\Competence;
 
 
-// Tests 
+$expert = new ExpertTech([
+    'firstname'     => 'bob', //ExpertTech étends collaborateur, il faut aussi préciser les champs de collaborateur
+    'name'          => 'doe',
+    'birthDate'     => new DateTime('23-11-1999'),
+    'address'       => '3 rue du test',
+    'maritalStatus' => 'single',
+    'salary'        => 1999.00,
+    'yearsInCompany'=> 0,
+    'departement'   => 'Réalité Virtuelle',
+    'competences'   => ['PHP', 'JS'], 
+    'disponible'    => 'oui'
+]); //Il est possible que certains types fassent encore buguer l'application...
 
-// $test = new Admin([
-//     'name'          => 'Doe',
-//     'firstname'     => 'John',
-//     'birthDate'     => new DateTime('2000-00-00'),
-//     'address'       => '18 rue du test',
-//     'maritalStatus' => 'Célibataire',
-//     'salary'        => 2800.00,
-//     'yearsInCompany'=> 0,
-//     'fonction'      => 'Secrétaire'
-// ]);
-// $test->create();
-
-// $aaaa = Admin::getById(5);
-// $aaaa->delete(); 
+//Pour l'insérer dans la base de données, il faut utiliser la méthode create() :
+$expert->create(); //En cas d'erreur, l'exception renvoyé contient le type problématique avec le nom de la colonne
 
 
-// $test2 = new Departement([
-//     'expertise' => 'Web'
-// ]);
-// $test2->create();
+//Dans le cas ou on voudrait récupérer notre expert, on pourrait le récupérer de deux façons:
+$getExpert = ExpertTech::getById(1);                //Avec L'ID
+$getExpert = ExpertTech::whereEqual('name', 'doe'); //Avec son nom
+//Les deux méthodes retournent un objet ExpertTech, on peut donc enchainer les méthodes dessus...
+var_dump($getExpert);
 
-// $test3 = new Devis([
-//     'dateDevis' => new DateTime('1994-04-21'),
-//     'montant' => 666.66
-// ]);
-// $test3->create();
 
-// $test4 = new Client([
-//     'nomSociete'=> 'SKT T1',
-//     'nomContact'=> 'Faker',
-//     'numeroContact'=>0666666666
-// ]);
-// $test4->create();
+//...Par exemple pour le supprimer
+try {
+    $delExpert = ExpertTech::getById(10)->delete(); //Cause une erreur si delete est appelée sur un élément qui n'existe pas...
+}
+catch(\Error $e){}; //Dans le cadre de l'exemple, on ignore l'erreur ici pour continuer l'éxecution du code
+//On peut enchainer getById et delete pour le supprimer.
 
-// $test5 = new ExpertTech([
-//     'name'              => 'Bill', 
-//     'firstname'         => 'Gates', 
-//     'birthDate'         => new DateTime('1994-04-21'), 
-//     'address'           => ' 5, rue des arbres ', 
-//     'maritalStatus'     => 'Célib', 
-//     'salary'            => 4800.76, 
-//     'yearsInCompany'    => '7',
-//     'departement'          => 'Reconnaissance Visuelle',
-//     'competences'=>'Python, Csharp, C',
-//     'disponible'=>'Oui'
-// ]);
-// $test5->create();
-
-// $test6 = new Competences([
-//     'name'=>'Neymar',
-//     'firstname'=>'JR',
-//     'experience'=> 12,
-//     'competences'=>'PHP,C++,Angular',
-//     'departement'=>'Web'
-// ]);
-// $test6->create();
-
-// $test7 = new Facture([
-//     'dateFacture'=>new Datetime('1997-06-05'),
-//     'montant'=>3565.65
-// ]);
-// $test7->create();
-
-// $test8 = new RespoTech([
-//     'name'=>'Respo' , 
-//     'firstname'=>'Teck',
-//     'departement'=>'Réseau & Sécurité'
-// ]);
-// $test8->create();
-
-// $test9 = new Mission([
-//     'dateDebutMission'         => new DateTime('2018-09-11'),
-//     'dateFinMission' => new DateTime('2018-12-11'),  
-//     'description'         => 'Refonte de site vitrine',
-//     'nombreTech'=>2
-// ]);
-// $test9->create();
-
-// $test10 = new Rapport([
-//     'dateDebutMission'         => new DateTime('2018-09-11'),
-//     'dateFinMission' => new DateTime('2018-12-11'),  
-//     'description'         => 'Refonte de site vitrine',
-//     'nombreTech'=>2,
-//     'montantMission'=>10000
-// ]);
-// $test10->create();
+//On peut aussi le modifier :
+$updateExpert = ExpertTech::getById(3)->setName('lol');
+//en utilisant les setters, la modification est automatiquement enregistré en base de données si on appelle la méthode save() dans le setter
 
 ?>

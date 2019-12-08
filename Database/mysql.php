@@ -10,8 +10,13 @@ class Database {
      *
      */
     function __construct() {
+        $host = 'localhost';
+        $dbname = 'phppoo';
+        $user = 'root';
+        $password = 'root';
+
         try {
-            $this->bdo = new \PDO('mysql:host=localhost;dbname=phppoo','root','root');
+            $this->bdo = new \PDO('mysql:host='.$host.';dbname='.$dbname,$user,$password);
             $this->bdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
         catch (\PDOException $e) {
@@ -117,6 +122,7 @@ class Table {
             case 'int':                 $formattedType = 'INT'; break;
             case 'datetime':            $formattedType = 'DATETIME'; break;
             case 'float':               $formattedType = 'FLOAT'; break;
+            case 'json':                $formattedType = 'JSON'; break;
             default:                    throw new \Exception('Invalid Type in Column'); break;
         }
         $nullable = $nullable ? 'NULL' : 'NOT NULL';

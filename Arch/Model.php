@@ -92,7 +92,6 @@ abstract class Model {
         if (static::$table === null) {
             throw new \Exception('Missing table declaration in Model');
         }
-
         $db->getPDO()->query('
         INSERT INTO '.static::$table.'('.$chain.')
         VALUES('.$this->getValuesForSQL($this->fillable, 0).')
@@ -181,8 +180,9 @@ abstract class Model {
                 switch (gettype($this->$item)) {
                     case 'string':      $values[] = '"'.$this->$item.'"';                           break;
                     case 'integer':     $values[] = ''.$this->$item.'';                             break;
-                    case 'double':       $values[] = ''.$this->$item.'';                             break;
+                    case 'double':      $values[] = ''.$this->$item.'';                             break;
                     case 'object':      $values[] = '"'.$this->$item->format('Y-m-d H:i:s').'"';    break;
+                    case 'array':       $values[] = "'".json_encode($this->$item)."'";                break;
                     default: throw new \Exception('Internal Error (type caught: '.gettype($this->$item).' is column: '.$item);
                 }
             }

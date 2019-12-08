@@ -25,11 +25,11 @@ $db = new Database\Database();
 //On se limitera à 3 compétences pour l'exemple
 
 
-(new Departement(['name' => 'Réalité Virtuelle', 'expertise' => "Création d'application VR"]));
-(new Departement(['name' => "Système d'Information", 'expertise' => "Création de système pour des réseaux entreprises"]));
-(new Departement(['name' => "Web", 'expertise' => "Création de sites internet"]));
-(new Departement(['name' => "Informatique Embarquée", 'expertise' => "IoT & Objets connectées"]));
-(new Departement(['name' => "Réseau et sécurité", 'expertise' => "Protection contre le hack & exploits"]));  
+(new Departement(['name' => 'Réalité Virtuelle', 'expertise' => "Création d'application VR"]))->create();
+(new Departement(['name' => "Système d'Information", 'expertise' => "Création de système pour des réseaux entreprises"]))->create();
+(new Departement(['name' => "Web", 'expertise' => "Création de sites internet"]))->create();
+(new Departement(['name' => "Informatique Embarquée", 'expertise' => "IoT & Objets connectées"]))->create();
+(new Departement(['name' => "Réseau et sécurité", 'expertise' => "Protection contre le hack & exploits"]))->create();  
 
 
 ?>

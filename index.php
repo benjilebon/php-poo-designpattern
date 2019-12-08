@@ -22,7 +22,7 @@ spl_autoload_register(function ($class_name) {
 /**
  * Chargement du fichier principal ou on utilise tout notre code
  * 
- * C'est ici qu'on crée les tables, instancie les models etc.
+ * C'est ici qu'on instancie les models, manipule la base de données etc.
  * 
  */
 require_once 'main.php';

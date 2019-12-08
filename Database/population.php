@@ -13,6 +13,10 @@ use App\Models\Mission;
 
 include('mysql.php');
 
+/**
+ * Ce fichier est utilisé par la console pour créer les tables dans la base de données, la commande 'php spacewich populate' exécute l'ensemble de ce fichier
+ */
+
 $db = new Database\Database();
 
 //Création des tables

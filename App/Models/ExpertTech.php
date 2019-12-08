@@ -22,7 +22,9 @@ class ExpertTech extends Collaborateur {
 
     public function __construct($attributes){
         parent::__construct($attributes);
-        $this->competences = json_decode($this->competences);
+        if (gettype($this->competences) == 'string') {
+            $this->competences = json_decode($this->competences);
+        }
     }
 
     public function setDepartement($p) {

@@ -3,7 +3,7 @@
 namespace App\Models;
 use App\Models\Collaborateur;
 
-class Competences extends ExpertTech {
+class Competences extends Model {
         /** @var String $competences */
         protected $competences;
         /** @var Int $experience */

@@ -41,7 +41,6 @@ abstract class Model {
         if ($this->getId() === null) {
             throw new \Exception("Object doesn't exist in Database");
         }
-
         $db->getPDO()->query('
         UPDATE `'.static::$table.'` SET '.$this->getValuesForSQL($this->fillable, 1).' WHERE `'.static::$table.'`.`id` = '.$this->getId()
         );
@@ -66,10 +65,10 @@ abstract class Model {
         ')->fetch(\PDO::FETCH_ASSOC);
 
         if (!$query) {
-            trigger_error('Object does not exist in Database', E_USER_WARNING);
+            $caller = \debug_backtrace();
+            trigger_error('Object does not exist in database: in <strong>'.$caller[0]['function'].'</strong> called from <strong>'.$caller[0]['file'].'</strong> on line <strong>'.$caller[0]['line'].'</strong>'."\n<br />Caught ", E_USER_WARNING);
             return false;
         }
-
 
         $object = self::instantiate($query);
 
@@ -205,7 +204,6 @@ abstract class Model {
      */
     private function getValuesForSQL(Array $array, $type) {
         $values = [];
-        $updateValues = [];
         if (!$type) {
             foreach ($array as $item) {
                 switch (gettype($this->$item)) {
@@ -221,7 +219,14 @@ abstract class Model {
         } 
         else {
             foreach ($array as $item) {
-                $values[] = '`'.$item.'` = "'.$this->$item.'"';
+                switch (gettype($this->$item)) {
+                    case 'string':      $values[] = '`'.$item.'` = "'.$this->$item.'"';                         break;
+                    case 'integer':     $values[] = '`'.$item.'` = '.$this->$item.'';                           break;
+                    case 'double':      $values[] = '`'.$item.'` = '.$this->$item.'';                           break;
+                    case 'object':      $values[] = '`'.$item.'` = "'.$this->$item->format('Y-m-d H:i:s').'"';  break;
+                    case 'array':       $values[] = '`'.$item."` = '".json_encode($this->$item)."'";            break;
+                    default: throw new \Exception('Internal Error (type caught: '.gettype($this->$item).' is column: '.$item);
+                }
             }
             return implode(',', $values);
         }

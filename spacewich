@@ -4,7 +4,6 @@
  * 
  * Ce CLI est utilisé via la syntaxe suivante : php spacewich
  * 
- * Il permet pour le moment de pouvoir créer les tables sans avoir a passer par le main.php
  * 
  */
 

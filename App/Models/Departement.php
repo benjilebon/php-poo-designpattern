@@ -8,7 +8,7 @@ class Departement extends Model{
     /** @var String $expertise */
     protected $expertise;
 
-    protected $fillable=['expertise'];
+    protected $fillable=['name', 'expertise'];
     
     static protected $table = 'departement';
 

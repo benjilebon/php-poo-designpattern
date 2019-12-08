@@ -8,7 +8,7 @@ try {
 /**
  * Ce code permet d'initier l'autoload permettant à PHP d'automatiquement importer les class sans préciser leur emplacement précis
  * 
- * Toute importation par de /
+ * Toute importation par de / (root folders)
  * 
  * ex: use App\Models\Admin
  * 

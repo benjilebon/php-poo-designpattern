@@ -6,8 +6,7 @@
  * Pour commencer, essayons de créer un expert technique :
  */
 
- use App\Models\ExpertTech; //Grâce à l'autoload, on peut utiliser le use pour charger notre model
- use App\Models\Competence;
+use App\Models\ExpertTech; //Grâce à l'autoload, on peut utiliser le use pour charger notre model
 
 
 $expert = new ExpertTech([

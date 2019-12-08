@@ -33,15 +33,21 @@ To use it, type in console :
 
 ```php spacewich```
 
-spacewich comes with 2 commands for this exercise: populate and serve, populate creates all the tables and serve opens a PHP server to test the application
+spacewich comes with 3 commands for this exercise: populate, serve and seed. populate creates all the tables, serve opens a PHP server to test the application and seed fills the tables with data
 
 To create the tables :
 
 ```php spacewich populate```
 
+To fill the tables with fixed datas (here competences and departments):
+
+```php spacewich seed```
+
 When it's done, you should be able to start the server and use the application, using :
 
 ```php spacewich serve```
+
+
 
 
 # The "playfield"

@@ -8,6 +8,7 @@ return [
     'commands' => [
         Console\Commands\Populate::class,
         Console\Commands\Serve::class,
+        Console\Commands\Seed::class
     ]
 ]
 

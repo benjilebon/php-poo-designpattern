@@ -22,83 +22,88 @@ $db = new Database\Database();
 //Création des tables
 $db->createTable('admin', 
     [
-    'name'              => 'string', 
-    'firstname'         => 'string', 
-    'birthDate'         => 'datetime', 
-    'address'           => 'string', 
-    'maritalStatus'     => 'string', 
-    'salary'            => 'float', 
-    'yearsInCompany'    => 'int',
-    'fonction'          => 'string'
+    'name'                  => 'string', 
+    'firstname'             => 'string', 
+    'birthDate'             => 'datetime', 
+    'address'               => 'string', 
+    'maritalStatus'         => 'string', 
+    'salary'                => 'float', 
+    'yearsInCompany'        => 'int',
+    'fonction'              => 'string'
 ]);
 
 $db->createTable('devis', 
      [
-    'dateDevis'         => 'datetime', 
-    'montant'         => 'int'
+    'dateDevis'             => 'datetime', 
+    'montant'               => 'int'
 ]);
 
 $db->createTable('departement', 
     [
-    'name'               => 'string',
-    'expertise'          => 'string'
+    'name'                  => 'string',
+    'expertise'             => 'string'
 ]);
 
 $db->createTable('clients', 
     [
-    'nomSociete'          => 'string',
-    'nomContact'          => 'string',
-    'numeroContact' => 'int'
+    'nomSociete'            => 'string',
+    'nomContact'            => 'string',
+    'numeroContact'         => 'int'
 ]);
 
 $db->createTable('expert_tech', 
     [
-    'name'              => 'string', 
-    'firstname'         => 'string', 
-    'birthDate'         => 'datetime', 
-    'address'           => 'string', 
-    'maritalStatus'     => 'string', 
-    'salary'            => 'float', 
-    'yearsInCompany'    => 'int',
-    'departement'          => 'string',
-    'competences'=>'json',
-    'disponible'=>'string'
+    'name'                  => 'string', 
+    'firstname'             => 'string', 
+    'birthDate'             => 'datetime', 
+    'address'               => 'string', 
+    'maritalStatus'         => 'string', 
+    'salary'                => 'float', 
+    'yearsInCompany'        => 'int',
+    'departement'           => 'string',
+    'competences'           =>'json',
+    'disponible'            =>'string'
 ]);
 
 $db->createTable('competences', 
     [
-    'name'          => 'string',
-    'competence' => 'string',
+    'name'                  => 'string',
+    'competence'            => 'string',
 ]);
 
 $db->createTable('factures', 
      [
-    'dateFacture'         => 'datetime', 
-    'montant'         => 'int'
+    'dateFacture'           => 'datetime', 
+    'montant'               => 'int'
 ]);
 
 $db->createTable('respo_tech', 
      [
-    'name'         => 'string', 
-    'firstname'         => 'string',
-    'departement'=>'string'
+    'name'                  => 'string', 
+    'firstname'             => 'string',
+    'birthDate'             => 'datetime', 
+    'address'               => 'string', 
+    'maritalStatus'         => 'string', 
+    'salary'                => 'float', 
+    'yearsInCompany'        => 'int',
+    'departement'           =>'string'
 ]);
 
 $db->createTable('mission', 
      [
-    'dateDebutMission'         => 'datetime',
-    'dateFinMission' => 'datetime',  
-    'description'         => 'string',
-    'nombreTech'=>'int'
+    'dateDebutMission'      => 'datetime',
+    'dateFinMission'        => 'datetime',  
+    'description'           => 'string',
+    'nombreTech'            =>'int'
 ]);
 
 $db->createTable('rapports', 
      [
-    'dateDebutMission'         => 'datetime',
-    'dateFinMission' => 'datetime',  
-    'description'         => 'string',
-    'nombreTech'=>'int',
-    'montantMission'=>'int'
+    'dateDebutMission'      => 'datetime',
+    'dateFinMission'        => 'datetime',  
+    'description'           => 'string',
+    'nombreTech'            =>'int',
+    'montantMission'        =>'int'
 ]);
 
 

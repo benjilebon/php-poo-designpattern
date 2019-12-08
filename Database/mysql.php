@@ -18,6 +18,7 @@ class Database {
         try {
             $this->bdo = new \PDO('mysql:host='.$host.';dbname='.$dbname,$user,$password);
             $this->bdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $this->bdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false); //Pour avoir les bons types sortant de la database
         }
         catch (\PDOException $e) {
             echo "\nLa connexion a la base de données n'a pas pu être établi \n";

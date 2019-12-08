@@ -77,6 +77,37 @@ abstract class Model {
     }
 
     /**
+     * Récupère un Objet dans la base de données et retourne une instance de l'objet récupéré
+     * Cette fonction permet d'utiliser autre chose que l'ID en condition
+     * 
+     * Équivalent de read en CRUD
+     * 
+     * @param int       $column Nom de la colonne
+     * @param int       $val    Valeur a tester
+     * @return Object   object(App\Models\Client)#0
+     * @return Boolean  false si l'objet n'existe pas
+     * 
+     * 
+     */
+    static public function whereEqual($column, $val) {
+        global $db;
+        $query = $db->getPDO()->query('
+        SELECT * from `'.static::$table.'` WHERE '.$column.' = "'.$val.'"
+        ')->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$query) {
+            $caller = \debug_backtrace();
+            trigger_error('Object does not exist in database: in <strong>'.$caller[0]['function'].'</strong> called from <strong>'.$caller[0]['file'].'</strong> on line <strong>'.$caller[0]['line'].'</strong>'."\n<br />Caught ", E_USER_WARNING);
+            return false;
+        }
+
+
+        $object = self::instantiate($query);
+
+        return $object;
+    }
+
+    /**
      * Exporte l'objet dans la base de données
      * 
      * 

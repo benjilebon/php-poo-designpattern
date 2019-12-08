@@ -124,6 +124,7 @@ class Table {
             case 'datetime':            $formattedType = 'DATETIME'; break;
             case 'float':               $formattedType = 'FLOAT'; break;
             case 'json':                $formattedType = 'JSON'; break;
+            case 'boolean':             $formattedType = 'BOOLEAN'; break;
             default:                    throw new \Exception('Invalid Type in Column'); break;
         }
         $nullable = $nullable ? 'NULL' : 'NOT NULL';

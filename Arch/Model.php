@@ -209,6 +209,7 @@ abstract class Model {
                 switch (gettype($this->$item)) {
                     case 'string':      $values[] = '"'.$this->$item.'"';                           break;
                     case 'integer':     $values[] = ''.$this->$item.'';                             break;
+                    case 'boolean':     $values[] = ''.$this->$item.'';                             break;
                     case 'double':      $values[] = ''.$this->$item.'';                             break;
                     case 'object':      $values[] = '"'.$this->$item->format('Y-m-d H:i:s').'"';    break;
                     case 'array':       $values[] = "'".json_encode($this->$item)."'";                break;
@@ -223,6 +224,7 @@ abstract class Model {
                     case 'string':      $values[] = '`'.$item.'` = "'.$this->$item.'"';                         break;
                     case 'integer':     $values[] = '`'.$item.'` = '.$this->$item.'';                           break;
                     case 'double':      $values[] = '`'.$item.'` = '.$this->$item.'';                           break;
+                    case 'boolean':     $values[] = ''.$this->$item.'';                             break;
                     case 'object':      $values[] = '`'.$item.'` = "'.$this->$item->format('Y-m-d H:i:s').'"';  break;
                     case 'array':       $values[] = '`'.$item."` = '".json_encode($this->$item)."'";            break;
                     default: throw new \Exception('Internal Error (type caught: '.gettype($this->$item).' is column: '.$item);

@@ -20,7 +20,7 @@ $expert = new ExpertTech([
     'yearsInCompany'=> 0,
     'departement'   => 'Réalité Virtuelle',
     'competences'   => ['PHP', 'JS'], 
-    'disponible'    => 'oui'
+    'disponible'    => true
 ]); //Il est possible que certains types fassent encore buguer l'application...
 
 //Pour l'insérer dans la base de données, il faut utiliser la méthode create() :
@@ -42,7 +42,7 @@ catch(\Error $e){}; //Dans le cadre de l'exemple, on ignore l'erreur ici pour co
 //On peut enchainer getById et delete pour le supprimer.
 
 //On peut aussi le modifier :
-$updateExpert = ExpertTech::getById(3)->setName('lol');
+$updateExpert = ExpertTech::getById(1)->setFirstname('doe');
 //en utilisant les setters, la modification est automatiquement enregistré en base de données si on appelle la méthode save() dans le setter
 
 ?>

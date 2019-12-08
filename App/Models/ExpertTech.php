@@ -59,6 +59,10 @@ class ExpertTech extends Collaborateur {
         return $this->disponible;
     }
 
+    public function createRapport($attributes) {
+        return new Rapport((array) $attributes);
+    }
+
 }
 
 

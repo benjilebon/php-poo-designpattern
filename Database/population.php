@@ -61,8 +61,8 @@ $db->createTable('expert_tech',
     'salary'                => 'float', 
     'yearsInCompany'        => 'int',
     'departement'           => 'string',
-    'competences'           =>'json',
-    'disponible'            =>'string'
+    'competences'           => 'json',
+    'disponible'            => 'boolean'
 ]);
 
 $db->createTable('competences', 

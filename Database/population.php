@@ -10,7 +10,7 @@ use App\Models\Facture;
 use App\Models\RespoTech;
 use App\Models\Rapport;
 use App\Models\Mission;
-
+define ('DEBUG', false);
 include('mysql.php');
 
 /**
@@ -20,91 +20,21 @@ include('mysql.php');
 $db = new Database\Database();
 
 //Création des tables
-$db->createTable('admin', 
-    [
-    'name'                  => 'string', 
-    'firstname'             => 'string', 
-    'birthDate'             => 'datetime', 
-    'address'               => 'string', 
-    'maritalStatus'         => 'string', 
-    'salary'                => 'float', 
-    'yearsInCompany'        => 'int',
-    'fonction'              => 'string'
+
+$db->createTable('articles', 
+[
+    'title' => 'string',
+    'description' => 'string',
+    'category_id' => 'int'
 ]);
 
-$db->createTable('devis', 
-     [
-    'dateDevis'             => 'datetime', 
-    'montant'               => 'int'
+$db->createTable('categories', [
+    'title' => 'string'
 ]);
 
-$db->createTable('departement', 
-    [
-    'name'                  => 'string',
-    'expertise'             => 'string'
+$db->createTable('users', [
+    'username' => 'string',
+    'password' => 'string'
 ]);
-
-$db->createTable('clients', 
-    [
-    'nomSociete'            => 'string',
-    'nomContact'            => 'string',
-    'numeroContact'         => 'int'
-]);
-
-$db->createTable('expert_tech', 
-    [
-    'name'                  => 'string', 
-    'firstname'             => 'string', 
-    'birthDate'             => 'datetime', 
-    'address'               => 'string', 
-    'maritalStatus'         => 'string', 
-    'salary'                => 'float', 
-    'yearsInCompany'        => 'int',
-    'departement'           => 'string',
-    'competences'           => 'json',
-    'disponible'            => 'boolean'
-]);
-
-$db->createTable('competences', 
-    [
-    'name'                  => 'string',
-    'competence'            => 'string',
-]);
-
-$db->createTable('factures', 
-     [
-    'dateFacture'           => 'datetime', 
-    'montant'               => 'int'
-]);
-
-$db->createTable('respo_tech', 
-     [
-    'name'                  => 'string', 
-    'firstname'             => 'string',
-    'birthDate'             => 'datetime', 
-    'address'               => 'string', 
-    'maritalStatus'         => 'string', 
-    'salary'                => 'float', 
-    'yearsInCompany'        => 'int',
-    'departement'           =>'string'
-]);
-
-$db->createTable('mission', 
-     [
-    'dateDebutMission'      => 'datetime',
-    'dateFinMission'        => 'datetime',  
-    'description'           => 'string',
-    'nombreTech'            =>'int'
-]);
-
-$db->createTable('rapports', 
-     [
-    'dateDebutMission'      => 'datetime',
-    'dateFinMission'        => 'datetime',  
-    'description'           => 'string',
-    'nombreTech'            =>'int',
-    'montantMission'        =>'int'
-]);
-
 
 ?>

@@ -10,14 +10,17 @@ class Database {
      *
      */
     function __construct() {
-        $host = 'localhost';
-        $dbname = 'phppoo';
-        $user = 'root';
-        $password = 'root';
+        $host       = 'localhost';
+        $dbname     = 'mvcblog';
+        $user       = 'root';
+        $password   = 'root';
 
         try {
             $this->bdo = new \PDO('mysql:host='.$host.';dbname='.$dbname,$user,$password);
-            $this->bdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            if (DEBUG) {
+                echo "Debug ON";
+                $this->bdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
             $this->bdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false); //Pour avoir les bons types sortant de la database
         }
         catch (\PDOException $e) {

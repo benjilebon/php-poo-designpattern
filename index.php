@@ -1,4 +1,8 @@
 <?php
+
+define ('ROOT', __DIR__);
+define ('DEBUG', false);
+
 try {
     require './Database/mysql.php';
 } catch (\Exception $e) {
@@ -18,18 +22,17 @@ spl_autoload_register(function ($class_name) {
     include $p . '.php';
 });
 
+\session_start();
+
 
 /**
- * Chargement du fichier principal ou on utilise tout notre code
- * 
- * C'est ici qu'on instancie les models, manipule la base de données etc.
+ * Chargement des routes de l'application..
  * 
  */
-require_once 'main.php';
+require_once 'routes.php';
 
 
 
-?>
 
 
 

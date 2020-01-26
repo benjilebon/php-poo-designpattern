@@ -1,17 +1,10 @@
 <?php
-
-// use App\Models\Admin;
-use App\Models\Departement;
-// use App\Models\Devis;
-// use App\Models\Client;
-use App\Models\Competence;
-// use App\Models\ExpertTech;
-// use App\Models\Facture;
-// use App\Models\RespoTech;
-// use App\Models\Rapport;
-// use App\Models\Mission;
-
+define ('DEBUG', false);
 include('mysql.php');
+
+use App\Models\Article;
+use App\Models\Category;
+use App\Models\User;
 
 /**
  * Ce fichier est utilisé par la console pour remplir les tables de valeurs prédéfinis, ici par exemple: les compétences & départements
@@ -19,17 +12,17 @@ include('mysql.php');
 
 $db = new Database\Database();
 
-(new Competence(['name' => 'JS', 'competence' => 'NodeJS, jQuery']))->create();
-(new Competence(['name' => 'PHP', 'competence' => 'Laravel, PHPPOO, Symfony']))->create();
-(new Competence(['name' => 'Python', 'competence' => 'Django, Data Visualization']))->create();
-//On se limitera à 3 compétences pour l'exemple
 
+// (new Article(['title' => 'Test Article 1', 'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati accusantium, accusamus veritatis non expedita velit at optio reprehenderit sunt.', 'category_id' => 1]))->create();
+// (new Article(['title' => 'Test Article 2', 'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati accusantium, accusamus veritatis non expedita velit at optio reprehenderit sunt.', 'category_id' => 1]))->create();
+// (new Article(['title' => 'Test Article 3', 'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati accusantium, accusamus veritatis non expedita velit at optio reprehenderit sunt.', 'category_id' => 1]))->create();
+// (new Article(['title' => 'Test Article 4', 'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati accusantium, accusamus veritatis non expedita velit at optio reprehenderit sunt.', 'category_id' => 1]))->create();
+// (new Article(['title' => 'Test Article 5', 'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati accusantium, accusamus veritatis non expedita velit at optio reprehenderit sunt.', 'category_id' => 1]))->create();
 
-(new Departement(['name' => 'Réalité Virtuelle', 'expertise' => "Création d'application VR"]))->create();
-(new Departement(['name' => "Système d'Information", 'expertise' => "Création de système pour des réseaux entreprises"]))->create();
-(new Departement(['name' => "Web", 'expertise' => "Création de sites internet"]))->create();
-(new Departement(['name' => "Informatique Embarquée", 'expertise' => "IoT & Objets connectées"]))->create();
-(new Departement(['name' => "Réseau et sécurité", 'expertise' => "Protection contre le hack & exploits"]))->create();  
+// (new Category(['title' => 'Catégorie 1']))->create();
+// (new Category(['title' => 'Catégorie 2']))->create();
 
+(new User(['username' => 'root', 'password' => 'root']))->create();
 
 ?>
+

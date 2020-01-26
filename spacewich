@@ -14,9 +14,9 @@ spl_autoload_register(function ($class_name) {
     include_once $p . '.php';
 });
 
-require './Console/Handle.php';
+require './Core/Console/Handle.php';
 
-$console = new Console\Console();
+$console = new Core\Console\Console();
 
 
 $console->boot();

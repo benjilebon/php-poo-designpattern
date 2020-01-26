@@ -47,11 +47,3 @@ When it's done, you should be able to start the server and use the application, 
 
 ```php spacewich serve```
 
-
-
-
-# The "playfield"
-
-The application is intended to be tested on the *main.php* file, present at the root folder.
-
-the repo comes with a prefilled file, demonstrating how to use it
